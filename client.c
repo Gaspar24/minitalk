@@ -6,7 +6,7 @@
 /*   By: msacaliu <msacaliu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:13:02 by msacaliu          #+#    #+#             */
-/*   Updated: 2024/02/20 15:57:52 by msacaliu         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:02:02 by msacaliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void	send_message(int pid, char c)
 			if (kill(pid, SIGUSR1))
 			{
 				ft_printf("Error pid dosen t match\n");
-				return ;
+				exit(1);
 			}
 		}
 		else if (kill(pid, SIGUSR2))
 		{
 			ft_printf("Error pid dosen t match\n");
-			return ;
+			exit(1);
 		}
 		c >>= 1;
 		pause();
@@ -74,6 +74,5 @@ int	main(int argc, char *argv[])
 	while (*str)
 		send_message(pid, *str++);
 	send_message(pid, 0);
-	ft_printf("message has arrived\n");
 	return (0);
 }
